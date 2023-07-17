@@ -52,6 +52,8 @@ public class Movement : MonoBehaviour
         if (c.gameObject.tag == "Ball") {
             Debug.Log("Eat Ball");
 
+            hitCounter--;
+
             Destroy(c.gameObject);
 
         }
