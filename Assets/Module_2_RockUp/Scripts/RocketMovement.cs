@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Security.Cryptography;
+using System.Threading;
 using UnityEngine;
 
 public class RocketMovement : MonoBehaviour
 {
     Rigidbody rocket;
-    public float ThrustOffset=100;
+    public float ThrustOffset = 1f;
+    public float RotationOffset = 1f;
 
     void ProcessMovement() {
 
@@ -22,14 +26,23 @@ public class RocketMovement : MonoBehaviour
         //Left
         if (Input.GetKey(KeyCode.A)) 
         {
+            CalculateRotation(1);
+            //transform.Rotate(0 ,0 ,1);
             Debug.Log("Rotate Left");
         }
 
         //Right
         if (Input.GetKey(KeyCode.D))
         {
+            CalculateRotation(-1);
+            //transform.Rotate(0 ,0 ,-1);
             Debug.Log("Rotate Right");
         }
+    }
+
+    void CalculateRotation(int d)
+    {
+        transform.Rotate(d * Vector3.forward * RotationOffset * Time.deltaTime);
     }
 
     void Awake()
