@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
+    Rigidbody rocket;
+    private int rocketFuel = 100;
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
@@ -13,7 +15,8 @@ public class CollisionManager : MonoBehaviour
                 break;
 
             case "Fuel":
-                Debug.Log("Fuel");
+                rocketFuel += 30;
+                Debug.Log(rocketFuel);
                 break;
 
             case "Finish":
@@ -26,15 +29,35 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    void ExpenseFuel() {
+        rocketFuel--;
+    }
+
+    void FuelProcessing() {
+        if (rocketFuel % 10 == 0)
+        {
+            Debug.Log(rocketFuel);
+        }
+
+        if (rocketFuel >= 0)
+        {
+            rocket.constraints = RigidbodyConstraints.FreezePositionY;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    private void FixedUpdate()
+    {
+        ExpenseFuel();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        FuelProcessing();
     }
 }
