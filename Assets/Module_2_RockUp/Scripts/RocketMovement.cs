@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class RocketMovement : MonoBehaviour
 {
-    Rigidbody rocket;
+   [HideInInspector] public Rigidbody rocket;
     public float ThrustOffset = 1f;
     public float RotationOffset = 1f;
     public AudioSource ThrustAudioSource = null;
@@ -28,13 +28,15 @@ public class RocketMovement : MonoBehaviour
                 ThrustAudioSource.Play();
 
             }
-            
+
+            GameManager.instance.fuelManager.ExpenseFuel();
+
 
         }
         else
         {
-            ThrustAudioSource.Pause();
-            //ThrustAudioSource.Stop();
+            //ThrustAudioSource.Pause();
+            ThrustAudioSource.Stop();
         }
     }
 
