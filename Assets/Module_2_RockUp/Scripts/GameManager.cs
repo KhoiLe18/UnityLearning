@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public RocketMovement rocketMovement;
     public CollisionManager collisionManager;
     public FuelManager fuelManager;
+    public PlayerRespawnManager playerRespawnManager;
     public static GameManager instance;
 
 

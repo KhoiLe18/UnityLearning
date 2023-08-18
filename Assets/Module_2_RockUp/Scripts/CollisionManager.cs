@@ -4,26 +4,37 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    
+    [HideInInspector] public bool HasHitFinishLine = false;
     private void OnCollisionEnter(Collision collision)
     {
         switch (collision.gameObject.tag)
         {
             case "Pass":
-                Debug.Log("Pass");
+                //Debug.Log("Pass");
                 break;
 
             case "Fuel":
                 GameManager.instance.fuelManager.rocketFuel += 30;
-                Debug.Log(GameManager.instance.fuelManager.rocketFuel);
+               // Debug.Log(GameManager.instance.fuelManager.rocketFuel);
                 break;
 
             case "Finish":
-                Debug.Log("Finish");
+                {
+                    HasHitFinishLine = true;
+                    GameManager.instance.playerRespawnManager.WinSequence();
+
+                }
+                // Debug.Log("Finish");
                 break;
 
             default: //fail
-                Debug.Log("Fail");
+                     // Debug.Log("Fail");
+                {
+                   GameManager.instance.playerRespawnManager.LoadScene();
+
+                    HasHitFinishLine = false;
+                }
+              
                 break;
         }
     }

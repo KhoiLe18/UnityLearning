@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Module_2_RockUp/Scenes/RockUp_Env.unity
+    guid: 5fac5c44e07d10b4caa807e6795c4ac3
   m_configObjects: {}

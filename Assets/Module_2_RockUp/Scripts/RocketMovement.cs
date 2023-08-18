@@ -40,6 +40,10 @@ public class RocketMovement : MonoBehaviour
         }
     }
 
+    public void NoControl() {
+        ThrustAudioSource.Stop();
+    }
+
     void ProcessRotation() {
         //Left
         if (Input.GetKey(KeyCode.A)) 

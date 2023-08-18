@@ -7,25 +7,27 @@ public class FuelManager : MonoBehaviour
     Rigidbody rocket;
     public float rocketFuel = 100;
     public float fuelOffSet = 1; 
-
+    public bool isOutOfFuel = false;
+    public int countdownTimer = 0;
    public void ExpenseFuel()
     {
         rocketFuel -= 0.1f * fuelOffSet;
     }
 
-    void FuelProcessing()
+    void FuelDebug()
     {
-        //if (rocketFuel % 10 == 0)
-        //{
-            Debug.Log(rocketFuel);
-        //}
+        Debug.Log(rocketFuel);
+    }
 
-        if (rocketFuel <= 0)
-        {
-            //GameManager.instance.rocketMovement.rocket.constraints = RigidbodyConstraints.FreezePositionY;
-            GameManager.instance.rocketMovement.enabled = false;
-            Debug.Log("Out of Fuel");
-        }
+    void OutOfFuel ()
+    {
+        //GameManager.instance.rocketMovement.rocket.constraints = RigidbodyConstraints.FreezePositionY;
+        GameManager.instance.rocketMovement.enabled = false;
+        isOutOfFuel = true;
+        Debug.Log("Out of Fuel");
+        GameManager.instance.rocketMovement.NoControl();
+        StartCoroutine(RespawnCountdown());
+
     }
 
     void Start()
@@ -37,7 +39,7 @@ public class FuelManager : MonoBehaviour
     IEnumerator FuelHandling()
     {
         yield return new WaitForSeconds(1f);
-        FuelProcessing();
+        //FuelDebug();
         if (rocketFuel > 0) { 
         
         StartCoroutine(FuelHandling());
@@ -46,9 +48,34 @@ public class FuelManager : MonoBehaviour
 
     }
 
+    IEnumerator RespawnCountdown()
+    {
+            yield return new WaitForSeconds(countdownTimer);
+
+        if (GameManager.instance.collisionManager.HasHitFinishLine)
+        {
+            GameManager.instance.playerRespawnManager.WinSequence();
+            Debug.Log("WinnerOutOfFuel");
+        }
+        else
+        {
+            GameManager.instance.playerRespawnManager.LoadScene();
+            Debug.Log("LooserOutOfFuel");
+        }
+
+    }
+
     private void FixedUpdate()
     {
-        FuelProcessing();
+        if (rocketFuel > 0)
+        {
+            FuelDebug();
+        }
+        
+        if (!isOutOfFuel && rocketFuel <= 0)
+        {
+            OutOfFuel();
+        }
     }
 }
 
