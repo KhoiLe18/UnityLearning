@@ -42,13 +42,12 @@ public class CollisionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.instance.collisionManager = this.gameObject.GetComponent<CollisionManager>();
+
     }
 
-    
-
-    // Update is called once per frame
-    void Update()
+        // Update is called once per frame
+        void Update()
     {}
 
 

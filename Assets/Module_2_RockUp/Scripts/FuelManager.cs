@@ -16,7 +16,7 @@ public class FuelManager : MonoBehaviour
 
     void FuelDebug()
     {
-        Debug.Log(rocketFuel);
+        //Debug.Log(rocketFuel);
     }
 
     void OutOfFuel ()

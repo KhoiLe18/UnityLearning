@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4845304949253439491}
   - component: {fileID: 8420590892404478195}
   - component: {fileID: 4248897941834276786}
-  - component: {fileID: 8692494400863972374}
   - component: {fileID: 6440874418144845394}
+  - component: {fileID: 8692494400863972374}
   - component: {fileID: 430943387635864493}
   - component: {fileID: 604727712906508850}
   - component: {fileID: 4967154401790126893}
@@ -89,20 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8692494400863972374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2775219129797921287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d93b864a8ea2403418888a0c05043ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rocketFuel: 100
-  fuelOffSet: 1
 --- !u!136 &6440874418144845394
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -126,6 +112,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &8692494400863972374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775219129797921287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d93b864a8ea2403418888a0c05043ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketFuel: 100
+  fuelOffSet: 1
+  isOutOfFuel: 0
+  countdownTimer: 5
 --- !u!114 &430943387635864493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7f10733216846478f1969587c8924f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HasHitFinishLine: 0
 --- !u!54 &4967154401790126893
 Rigidbody:
   m_ObjectHideFlags: 0

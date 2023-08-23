@@ -12,7 +12,7 @@ public class RocketMovement : MonoBehaviour
     public float ThrustOffset = 1f;
     public float RotationOffset = 1f;
     public AudioSource ThrustAudioSource = null;
-     
+    public ParticleSystem ThrustVFX; 
 
     
     void ProcessMovement() {
@@ -26,6 +26,7 @@ public class RocketMovement : MonoBehaviour
             if (ThrustAudioSource != null & !ThrustAudioSource.isPlaying)
             {
                 ThrustAudioSource.Play();
+                ThrustVFX.Play();
 
             }
 
@@ -37,11 +38,13 @@ public class RocketMovement : MonoBehaviour
         {
             //ThrustAudioSource.Pause();
             ThrustAudioSource.Stop();
+            ThrustVFX.Pause();
         }
     }
 
     public void NoControl() {
         ThrustAudioSource.Stop();
+        ThrustVFX.Stop();
     }
 
     void ProcessRotation() {
@@ -79,7 +82,8 @@ public class RocketMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameManager.instance.rocketMovement = this.gameObject.GetComponent<RocketMovement>();
+       
     }
 
     // Update is called once per frame

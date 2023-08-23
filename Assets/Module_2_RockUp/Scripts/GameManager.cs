@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public FuelManager fuelManager;
     public PlayerRespawnManager playerRespawnManager;
     public static GameManager instance;
-
+    public int MyLives ;
 
 
     void Awake()
@@ -19,13 +19,15 @@ public class GameManager : MonoBehaviour
         if (instance == null)
          {
         instance = this;
-        }
-        else
-        {
-            Destroy(instance );
+            MyLives = 5;
         }
        
+        DontDestroyOnLoad(instance);
+
+       
+
     }
+
 }
 
     
